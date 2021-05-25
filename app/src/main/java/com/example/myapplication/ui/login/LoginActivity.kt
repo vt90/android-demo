@@ -1,20 +1,23 @@
 package com.example.myapplication.ui.login
 
+// App-center dependecies
 import android.app.Activity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
-import com.example.myapplication.databinding.ActivityLoginBinding
-
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
+import com.example.myapplication.databinding.ActivityLoginBinding
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
 
 class LoginActivity : AppCompatActivity() {
 
@@ -23,6 +26,12 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        AppCenter.start(
+            application,
+            "1aab14b8-f5dc-46ab-9d8d-d6ce08b71291",
+            Analytics::class.java, Crashes::class.java,
+        )
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
